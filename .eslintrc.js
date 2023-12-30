@@ -30,6 +30,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
   },
   settings: {
     react: {

@@ -1,19 +1,18 @@
 // vendors
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 // components
-import TabNavigator from './src/navigation';
+import TabNavigator from '@src/navigation';
+import ThemeContext from '@src/context/ThemeContext/Theme.context';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
-      <StatusBar />
+    <ThemeContext>
       <NavigationContainer>
         <TabNavigator />
       </NavigationContainer>
-    </SafeAreaView>
+    </ThemeContext>
   );
 }
 

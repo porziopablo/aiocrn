@@ -15,6 +15,7 @@ export enum FavoritesNavigation {
 }
 
 export enum MoreNavigation {
+  More = 'More',
   Settings = 'Settings',
   About = 'About',
 }

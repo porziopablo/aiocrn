@@ -3,19 +3,17 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // types
-import { MoreNavigation } from '@src/types/enums/navigation.enums';
+import { MoreNavigation } from '../../types/enums/navigation.enums';
 
-function EmptyScreen(): JSX.Element {
-  return <></>;
-}
+// screens
+import MoreScreen from '../../screens/other/More/More.screen';
 
 function MoreStackNavigator(): JSX.Element {
   const MoreNavigator = createNativeStackNavigator();
 
   return (
-    <MoreNavigator.Navigator>
-      <MoreNavigator.Screen name={MoreNavigation.Settings} component={EmptyScreen} />
-      <MoreNavigator.Screen name={MoreNavigation.About} component={EmptyScreen} />
+    <MoreNavigator.Navigator screenOptions={{ headerShown: false }}>
+      <MoreNavigator.Screen name={MoreNavigation.More} component={MoreScreen} />
     </MoreNavigator.Navigator>
   );
 }

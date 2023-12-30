@@ -14,7 +14,7 @@ function TabNavigator(): JSX.Element {
   const TabNavigator = createBottomTabNavigator();
 
   return (
-    <TabNavigator.Navigator>
+    <TabNavigator.Navigator screenOptions={{ headerShown: false }}>
       <TabNavigator.Screen name={TabNavigation.Events} component={EventsStackNavigator} />
       <TabNavigator.Screen name={TabNavigation.Favorites} component={FavoritesStackNavigator} />
       <TabNavigator.Screen name={TabNavigation.More} component={MoreStackNavigator} />

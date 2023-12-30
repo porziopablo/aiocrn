@@ -1,1 +1,11 @@
-{}
+{
+  "allEvents": {
+    "heading": "Todos los Eventos"
+  },
+  "allFavoriteEvents": {
+    "heading": "Todos los Eventos Favoritos"
+  },
+  "more": {
+    "heading": "Más"
+  }
+}
