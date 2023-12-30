@@ -1,7 +1,7 @@
 // vendors
 import React from 'react';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/config';
+import { config } from '../../../config/gluestack-ui.config';
 
 interface ThemeContextProps {
   children: React.ReactNode;

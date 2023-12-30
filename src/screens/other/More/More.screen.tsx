@@ -7,7 +7,7 @@ import Screen from '../../../components/Screen/Screen';
 
 function MoreScreen(): JSX.Element {
   const { t } = useTranslation();
-  return <Screen title={t('more.heading')} />;
+  return <Screen hideBackButton title={t('more.heading')} />;
 }
 
 export default MoreScreen;

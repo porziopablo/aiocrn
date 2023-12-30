@@ -10,10 +10,11 @@ import BackButton from '../BackButton/BackButton';
 interface ScreenProps {
   children?: React.ReactNode;
   title?: string;
+  hideBackButton?: boolean;
 }
 
 function Screen(props: ScreenProps): JSX.Element {
-  const { children, title } = props;
+  const { children, title, hideBackButton } = props;
   const insets = useSafeAreaInsets();
 
   return (
@@ -27,7 +28,7 @@ function Screen(props: ScreenProps): JSX.Element {
       ]}
     >
       <View style={styles.headerRow}>
-        <BackButton />
+        {!hideBackButton && <BackButton />}
         {!!title && (
           <Heading fontSize="$2xl" marginLeft="$5">
             {title}

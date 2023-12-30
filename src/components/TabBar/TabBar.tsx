@@ -44,12 +44,14 @@ function TabBar(props: BottomTabBarProps): JSX.Element {
           }
         };
 
-        const color = isFocused ? '$white' : '$tertiary200';
+        const color = isFocused ? '$white' : '$primary100';
 
         return (
           <TouchableOpacity style={styles.tab} onPress={onPress} key={route.key}>
             <Icon as={getIcon(route.name)} color={color} />
-            <Text color={color}>{label}</Text>
+            <Text bold color={color}>
+              {label}
+            </Text>
           </TouchableOpacity>
         );
       })}

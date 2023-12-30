@@ -7,7 +7,7 @@ import Screen from '../../../components/Screen/Screen';
 
 function AllFavoriteEventsScreen(): JSX.Element {
   const { t } = useTranslation();
-  return <Screen title={t('allFavoriteEvents.heading')} />;
+  return <Screen hideBackButton title={t('allFavoriteEvents.heading')} />;
 }
 
 export default AllFavoriteEventsScreen;

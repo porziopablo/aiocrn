@@ -7,7 +7,7 @@ import Screen from '../../../components/Screen/Screen';
 
 function AllEventsScreen(): JSX.Element {
   const { t } = useTranslation();
-  return <Screen title={t('allEvents.heading')} />;
+  return <Screen hideBackButton title={t('allEvents.heading')} />;
 }
 
 export default AllEventsScreen;

@@ -31,6 +31,9 @@ module.exports = {
     ],
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    // due to gluestack ejection some files use the @ts-ignore comment
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
   settings: {
     react: {
