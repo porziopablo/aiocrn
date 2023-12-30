@@ -1,15 +1,34 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb-base'],
+  extends: ['standard-with-typescript', 'plugin:react/recommended', 'prettier'],
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: ['.eslintrc.{js,cjs}'],
+      parserOptions: {
+        sourceType: 'script',
+      },
+    },
+  ],
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
+    'no-console': [
+      'warn',
+      {
+        allow: ['error'],
+      },
+    ],
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
-  plugins: ['prettier'],
 };

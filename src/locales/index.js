@@ -20,6 +20,6 @@ const config = {
   },
 };
 
-i18n.use(initReactI18next).init(config);
+i18n.use(initReactI18next).init(config).catch(console.error);
 
 export default i18n;
