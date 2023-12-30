@@ -3,7 +3,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // types
-import { EventsNavigation } from '../../types/enums/navigation.enums';
+import { EventsNavigation } from '@src/types/enums/navigation.enums';
 
 function EmptyScreen(): JSX.Element {
   return <></>;

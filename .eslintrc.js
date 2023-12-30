@@ -31,4 +31,9 @@ module.exports = {
     ],
     '@typescript-eslint/no-unused-vars': 'warn',
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };

@@ -1,7 +1,7 @@
 // vendors
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+console.log('createBottomTabNavigator', createBottomTabNavigator);
 // types
 import { TabNavigation } from '../types/enums/navigation.enums';
 
