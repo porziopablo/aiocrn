@@ -7,5 +7,10 @@
   },
   "more": {
     "heading": "More"
+  },
+  "tabs": {
+    "Events": "Events",
+    "Favorites": "Favorites",
+    "More": "More"
   }
 }

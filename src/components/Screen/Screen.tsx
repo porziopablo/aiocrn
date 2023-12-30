@@ -4,6 +4,9 @@ import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Heading, View } from '@gluestack-ui/themed';
 
+// components
+import BackButton from '../BackButton/BackButton';
+
 interface ScreenProps {
   children?: React.ReactNode;
   title?: string;
@@ -19,13 +22,18 @@ function Screen(props: ScreenProps): JSX.Element {
         styles.container,
         {
           paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-          paddingLeft: insets.left,
-          paddingRight: insets.right,
+          paddingHorizontal: 16,
         },
       ]}
     >
-      {!!title && <Heading>{title}</Heading>}
+      <View style={styles.headerRow}>
+        <BackButton />
+        {!!title && (
+          <Heading fontSize="$2xl" marginLeft="$5">
+            {title}
+          </Heading>
+        )}
+      </View>
       {children}
     </View>
   );
@@ -36,6 +44,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
   },
 });
 

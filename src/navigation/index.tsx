@@ -5,6 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // types
 import { TabNavigation } from '../types/enums/navigation.enums';
 
+// components
+import TabBar from '../components/TabBar/TabBar';
+
 // navigators
 import EventsStackNavigator from './stackNavigators/EventsStack.navigator';
 import FavoritesStackNavigator from './stackNavigators/FavoritesStack.navigator';
@@ -14,7 +17,10 @@ function TabNavigator(): JSX.Element {
   const TabNavigator = createBottomTabNavigator();
 
   return (
-    <TabNavigator.Navigator screenOptions={{ headerShown: false }}>
+    <TabNavigator.Navigator
+      screenOptions={{ headerShown: false }}
+      tabBar={(props) => <TabBar {...props} />}
+    >
       <TabNavigator.Screen name={TabNavigation.Events} component={EventsStackNavigator} />
       <TabNavigator.Screen name={TabNavigation.Favorites} component={FavoritesStackNavigator} />
       <TabNavigator.Screen name={TabNavigation.More} component={MoreStackNavigator} />
