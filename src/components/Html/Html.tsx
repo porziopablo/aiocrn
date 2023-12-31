@@ -1,5 +1,5 @@
 // vendors
-import React from 'react';
+import React, { useMemo } from 'react';
 import RenderHTML from 'react-native-render-html';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { Linking } from 'react-native';
@@ -12,7 +12,7 @@ interface HtmlProps {
   html?: string;
 }
 
-function Html(props: HtmlProps): JSX.Element {
+const HtmlMemoized = React.memo(function Html(props: HtmlProps): JSX.Element {
   const { html } = props;
   const navigation = useNavigation();
   const primaryColor: string = useToken('colors', 'primary500');
@@ -33,12 +33,16 @@ function Html(props: HtmlProps): JSX.Element {
     }
   }
 
-  const tagsStyles = {
-    a: {
-      color: primaryColor,
-      textDecorationLine: 'none' as 'none',
-    },
-  };
+  function getTagsStyles(): Record<string, any> {
+    return {
+      a: {
+        color: primaryColor,
+        textDecorationLine: 'none' as 'none',
+      },
+    };
+  }
+
+  const tagsStyles = useMemo(getTagsStyles, [primaryColor]);
 
   if (!html) return <></>;
 
@@ -52,6 +56,6 @@ function Html(props: HtmlProps): JSX.Element {
       }}
     />
   );
-}
+});
 
-export default Html;
+export default HtmlMemoized;
