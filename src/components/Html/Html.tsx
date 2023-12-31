@@ -12,6 +12,7 @@ interface HtmlProps {
   html?: string;
 }
 
+// memoized due to https://stackoverflow.com/questions/68966120/react-native-render-html-you-seem-to-update-the-x-prop-of-the-y-component-in-s
 const HtmlMemoized = React.memo(function Html(props: HtmlProps): JSX.Element {
   const { html } = props;
   const navigation = useNavigation();
