@@ -1,8 +1,9 @@
 // vendors
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ArrowLeftIcon, Icon } from '@gluestack-ui/themed';
+import { ArrowLeftIcon, Icon, Text } from '@gluestack-ui/themed';
 import { TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 interface BackButtonProps {
   onPress?: () => void;
@@ -11,6 +12,7 @@ interface BackButtonProps {
 function BackButton(props: BackButtonProps): JSX.Element {
   const { onPress } = props;
   const { goBack, canGoBack } = useNavigation();
+  const { t } = useTranslation();
 
   function handlePress(): void {
     if (onPress) {
@@ -21,8 +23,9 @@ function BackButton(props: BackButtonProps): JSX.Element {
   }
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={handlePress}>
       <Icon color="$primary500" as={ArrowLeftIcon} />
+      <Text ml="$2">{t('commons.back')}</Text>
     </TouchableOpacity>
   );
 }

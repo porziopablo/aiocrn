@@ -29,11 +29,7 @@ function Screen(props: ScreenProps): JSX.Element {
     >
       <View style={styles.headerRow}>
         {!hideBackButton && <BackButton />}
-        {!!title && (
-          <Heading fontSize="$2xl" marginLeft="$5">
-            {title}
-          </Heading>
-        )}
+        {!!title && <Heading fontSize="$2xl">{title}</Heading>}
       </View>
       {children}
     </View>
@@ -47,8 +43,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     width: '100%',
   },
 });

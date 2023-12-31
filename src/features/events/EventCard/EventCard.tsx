@@ -4,11 +4,13 @@ import { Box, VStack, Heading, Image, Text } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { DateTime } from 'luxon';
 import { TouchableOpacity } from 'react-native';
-import RenderHTML from 'react-native-render-html';
 
 // types
 import { type EventResource } from '../../../types/responses/event.responses';
 import { EventsNavigation, TabNavigation } from '../../../types/enums/navigation.enums';
+
+// components
+import Html from '../../../components/Html/Html';
 
 interface EventCardProps {
   event: EventResource;
@@ -53,9 +55,7 @@ function EventCard(props: EventCardProps): JSX.Element {
           <Heading $dark-color="$textLight200" size="sm">
             {event.title}
           </Heading>
-          {!!event.short_description && (
-            <RenderHTML contentWidth={100} source={{ html: event.short_description }} />
-          )}
+          <Html html={event.list_description} />
         </VStack>
       </Box>
     </TouchableOpacity>

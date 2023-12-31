@@ -12,5 +12,8 @@
     "Events": "Events",
     "Favorites": "Favorites",
     "More": "More"
+  },
+  "commons": {
+    "back": "Back"
   }
 }
