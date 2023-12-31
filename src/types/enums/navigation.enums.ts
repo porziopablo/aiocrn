@@ -17,9 +17,7 @@ export enum FavoritesNavigation {
 }
 
 export enum MoreNavigation {
-  More = 'More',
-  Settings = 'Settings',
-  About = 'About',
+  More = 'MoreScreen',
 }
 
 export interface EventsStackParamList {
@@ -33,8 +31,6 @@ export interface FavoriteEventsStackParamList {
 
 export interface MoreStackParamList {
   [MoreNavigation.More]: undefined;
-  [MoreNavigation.Settings]: undefined;
-  [MoreNavigation.About]: undefined;
 }
 
 export interface TabsParamList {
