@@ -10,6 +10,14 @@ const initialState: FavoritesState = {
   favoriteEventsIds: [],
 };
 
+/**
+ * Note: a real app would store favs in a DB, but since this is
+ * a demo app, the data will be persisted locally using redux-persist.
+ *
+ * If an API to fetch and modify the user's favs existed, the add and remove
+ * actions would become mutations inside the events.repository.ts file. And
+ * the redux-persist implementation could be removed.
+ */
 export const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
