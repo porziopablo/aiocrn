@@ -1,19 +1,35 @@
 // vendors
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text } from '@gluestack-ui/themed';
+import { Text, View } from '@gluestack-ui/themed';
 
 // components
 import Screen from '../../../components/Screen/Screen';
+import InfiniteScroll from '../../../components/InfiniteScroll/InfiniteScroll';
+
+// repositories
 import { useGetEventsQuery } from '../../../repositories/events.repository';
+
+// types
+import { type EventResource } from '../../../types/responses/event.responses';
 
 function AllEventsScreen(): JSX.Element {
   const { t } = useTranslation();
-  const { data } = useGetEventsQuery({});
+
+  function renderItem(item: EventResource): JSX.Element {
+    return (
+      <View borderWidth={1} height={100}>
+        <Text>
+          {item.title}
+          {item.short_description}
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <Screen hideBackButton title={t('allEvents.heading')}>
-      <Text>{JSON.stringify(data)}</Text>
+      <InfiniteScroll<EventResource> useQuery={useGetEventsQuery} renderCard={renderItem} />
     </Screen>
   );
 }
