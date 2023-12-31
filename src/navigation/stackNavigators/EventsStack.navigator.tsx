@@ -7,6 +7,7 @@ import { EventsNavigation } from '../../types/enums/navigation.enums';
 
 // screens
 import AllEventsScreen from '../../screens/events/AllEvents/AllEvents.screen';
+import EventDetailScreen from '../../screens/events/EventDetail/EventDetail.container';
 
 function EventsStackNavigator(): JSX.Element {
   const EventsNavigator = createNativeStackNavigator();
@@ -14,6 +15,7 @@ function EventsStackNavigator(): JSX.Element {
   return (
     <EventsNavigator.Navigator screenOptions={{ headerShown: false }}>
       <EventsNavigator.Screen name={EventsNavigation.All} component={AllEventsScreen} />
+      <EventsNavigator.Screen name={EventsNavigation.Detail} component={EventDetailScreen} />
     </EventsNavigator.Navigator>
   );
 }

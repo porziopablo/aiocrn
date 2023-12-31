@@ -12,7 +12,11 @@ export const eventsApi = apiSlice.injectEndpoints({
     getEvents: builder.query<ArticPageResponse<EventResource>, GetEventsParams>({
       query: (params) => ({ url: ArticPaths.Events, method: 'GET', params }),
     }),
+    getEvent: builder.query<EventResource, string>({
+      query: (id) => ({ url: `${ArticPaths.Events}/${id}`, method: 'GET' }),
+      transformResponse: (response: { data: EventResource }) => response?.data,
+    }),
   }),
 });
 
-export const { useGetEventsQuery } = eventsApi;
+export const { useGetEventsQuery, useGetEventQuery } = eventsApi;
