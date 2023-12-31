@@ -13,7 +13,7 @@
     "Favorites": "Favoritos",
     "More": "Más"
   },
-  "commons": {
-    "back": "Atrás"
+  "events": {
+    "addToCalendar": "Save to my calendar"
   }
 }

@@ -15,5 +15,8 @@
   },
   "commons": {
     "back": "Back"
+  },
+  "events": {
+    "addToCalendar": "Save to my calendar"
   }
 }

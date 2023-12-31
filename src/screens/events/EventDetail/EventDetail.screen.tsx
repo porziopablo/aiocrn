@@ -7,6 +7,7 @@ import { DateTime } from 'luxon';
 import Screen from '../../../components/Screen/Screen';
 import Html from '../../../components/Html/Html';
 import FavoriteEventButton from '../../../features/events/FavoriteEventButton/FavoriteEventButton';
+import AddToCalendarButton from '../../../features/events/AddToCalendarButton/AddToCalendarButton';
 
 // types
 import { type EventResource } from '../../../types/responses/event.responses';
@@ -36,6 +37,7 @@ function EventDetailScreen(props: EventDetailProps): JSX.Element {
         />
         <Html html={event.hero_caption} />
         <Html html={event.description} />
+        <AddToCalendarButton event={event} />
       </ScrollView>
     </Screen>
   );
