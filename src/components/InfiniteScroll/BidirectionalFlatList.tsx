@@ -6,9 +6,9 @@ import {
   type LayoutRectangle,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
+  type ViewStyle,
   ScrollView,
   View,
-  type ViewStyle,
 } from 'react-native';
 import get from 'lodash/get';
 
@@ -31,9 +31,9 @@ export interface BidirectionalFlatListProps<T> {
   onEndReached: () => void | Promise<void>;
   onStartReached: () => void | Promise<void>;
   renderItem: (item: T) => JSX.Element;
-  renderListEmptyComponent?: () => JSX.Element;
-  renderListHeaderComponent?: (listOnTop?: boolean) => JSX.Element;
-  renderListFooterComponent?: (listOnBottom?: boolean) => JSX.Element;
+  renderEmpty?: () => JSX.Element;
+  renderHeader?: () => JSX.Element;
+  renderFooter?: () => JSX.Element;
 }
 /**
  * It's based on the concept of list virtualization.
@@ -44,9 +44,9 @@ function BidirectionalFlatList<T>(props: BidirectionalFlatListProps<T>): JSX.Ele
     isLoading,
     pageCount,
     renderItem,
-    renderListEmptyComponent,
-    renderListFooterComponent,
-    renderListHeaderComponent,
+    renderEmpty,
+    renderFooter,
+    renderHeader,
   } = props;
 
   const [layoutFirstElement, setLayoutFirstElement] = React.useState<LayoutRectangle>();
@@ -148,7 +148,7 @@ function BidirectionalFlatList<T>(props: BidirectionalFlatListProps<T>): JSX.Ele
           </View>
         );
       default:
-        return renderItem(item);
+        return <View key={get(item, 'id', index) as any}>{renderItem(item)}</View>;
     }
   }
 
@@ -159,7 +159,7 @@ function BidirectionalFlatList<T>(props: BidirectionalFlatListProps<T>): JSX.Ele
       scrollEventThrottle={SCROLL_THROTTLE}
       style={{ paddingTop: 0 }}
     >
-      {renderListHeaderComponent?.()}
+      {renderHeader?.()}
       <View
         style={{
           paddingBottom: DEFAULT_PADDING, // extra space in case page fits exactly in screen
@@ -168,9 +168,9 @@ function BidirectionalFlatList<T>(props: BidirectionalFlatListProps<T>): JSX.Ele
         }}
       >
         <View style={listStyle}>{data.map(wrapItem)}</View>
-        {!data.length && !isLoading ? renderListEmptyComponent?.() : null}
+        {!data.length && !isLoading ? renderEmpty?.() : null}
       </View>
-      {renderListFooterComponent?.()}
+      {renderFooter?.()}
     </ScrollView>
   );
 }

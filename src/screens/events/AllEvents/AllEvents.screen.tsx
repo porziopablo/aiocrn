@@ -29,7 +29,7 @@ function AllEventsScreen(): JSX.Element {
 
   return (
     <Screen hideBackButton title={t('allEvents.heading')}>
-      <InfiniteScroll<EventResource> useQuery={useGetEventsQuery} renderCard={renderItem} />
+      <InfiniteScroll<EventResource> useQuery={useGetEventsQuery} renderItem={renderItem} />
     </Screen>
   );
 }

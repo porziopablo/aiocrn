@@ -1,10 +1,11 @@
 // vendors
 import React, { useEffect, useMemo, useState } from 'react';
-import { Text } from '@gluestack-ui/themed';
+import { View } from '@gluestack-ui/themed';
 import { type TypedUseQueryHookResult } from 'node_modules/@reduxjs/toolkit/dist/query/react/buildHooks';
 
 // components
 import BidirectionalList, { type BidirectionalFlatListProps } from './BidirectionalFlatList';
+import Spinner from '../Spinner/Spinner';
 
 // types
 import { type BaseArticParams } from '../../types/requests/common.requests';
@@ -17,16 +18,12 @@ export interface InfiniteScrollItemOpts {
 }
 
 export interface InfiniteScrollProps<T> {
-  renderEmpty?: () => React.ReactElement;
-  renderCard: (item: T, opts?: InfiniteScrollItemOpts) => React.ReactElement;
+  renderItem: (item: T, opts?: InfiniteScrollItemOpts) => React.ReactElement;
   useQuery: (
     arg: BaseArticParams,
     options?: any,
   ) => TypedUseQueryHookResult<ArticPageResponse<T>, BaseArticParams, any>;
-  onShowMore?: () => void;
-  onTotalElementsChange?: (totalElements: number) => void;
-  showMoreVisible?: boolean;
-  inverted?: boolean;
+  renderEmpty?: () => React.ReactElement;
   pageSize?: number;
   bottomThreshold?: number;
   additionalQueryParams?: Record<string, any>;
@@ -36,12 +33,11 @@ export interface InfiniteScrollProps<T> {
 function InfiniteScroll<T>(props: InfiniteScrollProps<T>): JSX.Element {
   const {
     renderEmpty,
-    renderCard,
+    renderItem,
     useQuery,
     pageSize = DEFAULT_PAGE_SIZE,
     bottomThreshold,
     additionalQueryParams,
-    onTotalElementsChange,
   } = props;
 
   const [page, setPage] = useState(1);
@@ -63,11 +59,6 @@ function InfiniteScroll<T>(props: InfiniteScrollProps<T>): JSX.Element {
     page: page + 1,
     limit: pageSize,
   });
-
-  useEffect(() => {
-    // TODO: add onTotalElementsChange to dependencies, but avoiding infinite loop
-    onTotalElementsChange?.(currentResult.data?.pagination?.total ?? 0);
-  }, [currentResult]);
 
   const isFetching = currentResult.isFetching || nextResult.isFetching || previousResult.isFetching;
   const firstLoad = currentResult.isLoading || nextResult.isLoading || previousResult.isLoading;
@@ -108,16 +99,25 @@ function InfiniteScroll<T>(props: InfiniteScrollProps<T>): JSX.Element {
     }
   }
 
-  if (firstLoad) return <Text>...loading</Text>;
+  function renderLoader(): JSX.Element {
+    return isFetching ? <Spinner /> : <></>;
+  }
+
+  if (firstLoad)
+    return (
+      <View style={{ flex: 1, justifyContent: 'center' }}>
+        <Spinner size="large" />
+      </View>
+    );
 
   return (
     <BidirectionalList<T>
       data={items}
       pageCount={currentResult?.data?.pagination?.total_pages ?? 0}
-      renderItem={(item) => renderCard(item, { isFetching })}
-      renderListEmptyComponent={renderEmpty}
-      renderListFooterComponent={() => (isFetching ? <Text>...loading</Text> : <></>)}
-      renderListHeaderComponent={() => (isFetching ? <Text>...loading</Text> : <></>)}
+      renderItem={(item) => renderItem(item, { isFetching })}
+      renderEmpty={renderEmpty}
+      renderFooter={renderLoader}
+      renderHeader={renderLoader}
       onEndReached={changePage}
       onStartReached={async () => {
         await changePage(true);
