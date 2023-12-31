@@ -1,11 +1,12 @@
 // vendors
 import React from 'react';
-import { Image, ScrollView, Text } from '@gluestack-ui/themed';
+import { Image, ScrollView, Text, Box } from '@gluestack-ui/themed';
 import { DateTime } from 'luxon';
 
 // components
 import Screen from '../../../components/Screen/Screen';
 import Html from '../../../components/Html/Html';
+import FavoriteEventButton from '../../../features/events/FavoriteEventButton/FavoriteEventButton';
 
 // types
 import { type EventResource } from '../../../types/responses/event.responses';
@@ -20,9 +21,12 @@ function EventDetailScreen(props: EventDetailProps): JSX.Element {
   return (
     <Screen title={event.title}>
       <ScrollView pt="$4" style={{ width: '100%' }} contentContainerStyle={{ paddingBottom: 20 }}>
-        <Text $dark-color="$textLight200" fontSize="$md" my="$1.5">
-          {DateTime.fromISO(event.start_date).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)}
-        </Text>
+        <Box flexDirection="row" justifyContent="space-between" alignItems="center" my="$1.5">
+          <Text $dark-color="$textLight200" fontSize="$md">
+            {DateTime.fromISO(event.start_date).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)}
+          </Text>
+          <FavoriteEventButton eventId={event.id.toString()} />
+        </Box>
         <Image
           h={300}
           w="$full"
