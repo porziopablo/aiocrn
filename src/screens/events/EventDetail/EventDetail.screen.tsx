@@ -1,6 +1,6 @@
 // vendors
 import React from 'react';
-import { Image, ScrollView, Text, Box } from '@gluestack-ui/themed';
+import { ScrollView, Text, Box } from '@gluestack-ui/themed';
 import { DateTime } from 'luxon';
 
 // components
@@ -8,6 +8,7 @@ import Screen from '../../../components/Screen/Screen';
 import Html from '../../../components/Html/Html';
 import FavoriteEventButton from '../../../features/events/FavoriteEventButton/FavoriteEventButton';
 import AddToCalendarButton from '../../../features/events/AddToCalendarButton/AddToCalendarButton';
+import Image from '../../../components/Image/Image';
 
 // types
 import { type EventResource } from '../../../types/responses/event.responses';
@@ -32,7 +33,7 @@ function EventDetailScreen(props: EventDetailProps): JSX.Element {
           h={300}
           w="$full"
           borderRadius={'$lg' as any}
-          source={{ uri: event.image_url }}
+          source={event.image_url}
           alt={event.hero_caption ?? event.title}
         />
         <Html html={event.hero_caption} />

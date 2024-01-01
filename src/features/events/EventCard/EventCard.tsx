@@ -1,6 +1,6 @@
 // vendors
 import React from 'react';
-import { Box, VStack, Heading, Image, Text } from '@gluestack-ui/themed';
+import { Box, VStack, Heading, Text } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { DateTime } from 'luxon';
 import { TouchableOpacity } from 'react-native';
@@ -12,9 +12,8 @@ import { EventsNavigation, TabNavigation } from '../../../types/enums/navigation
 // components
 import Html from '../../../components/Html/Html';
 import FavoriteEventButton from '../FavoriteEventButton/FavoriteEventButton';
+import Image from '../../../components/Image/Image';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const defaultImage = require('../../../assets/image-not-found.png');
 interface EventCardProps {
   event: EventResource;
 }
@@ -47,7 +46,7 @@ function EventCard(props: EventCardProps): JSX.Element {
           <Image
             h={150}
             w="$full"
-            source={event.image_url ? { uri: event.image_url } : defaultImage}
+            source={event.image_url}
             alt={event.hero_caption ?? event.title}
           />
         </Box>
