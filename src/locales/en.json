@@ -18,5 +18,11 @@
   },
   "events": {
     "addToCalendar": "Save to my calendar"
+  },
+  "calendar": {
+    "saveEvent": {
+      "success": "Event saved to calendar",
+      "error": "Error saving event to calendar. Please try again."
+    }
   }
 }

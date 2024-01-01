@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { type EventResource } from '../../../types/responses/event.responses';
 
 // native modules
-import { addCalendarEvent } from '../../../nativeModules/nativeModules';
+import { addCalendarEvent } from '../../../nativeModules/calendarModules';
 
 interface AddToCalendarButtonProps {
   event: EventResource;

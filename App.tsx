@@ -10,6 +10,7 @@ import TabNavigator from './src/navigation';
 import ThemeContext from './src/context/ThemeContext/Theme.context';
 import { persistor, store } from './src/store';
 import PushNotificationListener from './src/features/notifications/PushNotificationListener/PushNotificationListener';
+import ToastInstance from './src/components/Toast/Toast';
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -23,6 +24,7 @@ function App(): JSX.Element {
           <NavigationContainer>
             <PushNotificationListener />
             <TabNavigator />
+            <ToastInstance />
           </NavigationContainer>
         </ThemeContext>
       </Provider>

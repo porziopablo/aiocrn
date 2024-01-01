@@ -15,5 +15,11 @@
   },
   "events": {
     "addToCalendar": "Save to my calendar"
+  },
+  "calendar": {
+    "saveEvent": {
+      "success": "Evento guardado en el calendario",
+      "error": "Error al guardar el evento en el calendario. Por favor, inténtelo de nuevo más tarde."
+    }
   }
 }
