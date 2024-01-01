@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "RNNotifications.h"
+#import "RNSplashScreen.h"
 
 #import <React/RCTBundleURLProvider.h>
 
@@ -12,9 +13,13 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
+  // monitor local and remote notifications
   [RNNotifications startMonitorNotifications];
 
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+  BOOL ret = [super application:application didFinishLaunchingWithOptions:launchOptions];
+  // show splash screen
+  if (ret == YES) { [RNSplashScreen show];  }
+  return ret;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

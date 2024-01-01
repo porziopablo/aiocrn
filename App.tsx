@@ -1,8 +1,9 @@
 // vendors
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import SplashScreen from 'react-native-splash-screen';
 
 // components
 import TabNavigator from './src/navigation';
@@ -11,6 +12,10 @@ import { persistor, store } from './src/store';
 import PushNotificationListener from './src/features/notifications/PushNotificationListener/PushNotificationListener';
 
 function App(): JSX.Element {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <PersistGate loading={null} persistor={persistor}>
       <Provider store={store}>
