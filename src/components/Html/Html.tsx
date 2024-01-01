@@ -4,6 +4,7 @@ import RenderHTML from 'react-native-render-html';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { Linking } from 'react-native';
 import { useToken } from '@gluestack-ui/themed';
+import { ARTIC_WEBSITE } from '@env';
 
 // types
 import { EventsNavigation } from '../../types/enums/navigation.enums';
@@ -27,7 +28,7 @@ const HtmlMemoized = React.memo(function Html(props: HtmlProps): JSX.Element {
       // other artic.edu links are opened in the browser until the app supports them
     } else if (href.startsWith('about:///')) {
       const routeName = href.split('///')[1];
-      Linking.openURL(`https://www.artic.edu/${routeName}`).catch(console.error);
+      Linking.openURL(`${ARTIC_WEBSITE}${routeName}`).catch(console.error);
     } else {
       // all other links are opened by default
       Linking.openURL(href).catch(console.error);
