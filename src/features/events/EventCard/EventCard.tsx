@@ -13,6 +13,8 @@ import { EventsNavigation, TabNavigation } from '../../../types/enums/navigation
 import Html from '../../../components/Html/Html';
 import FavoriteEventButton from '../FavoriteEventButton/FavoriteEventButton';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const defaultImage = require('../../../assets/image-not-found.png');
 interface EventCardProps {
   event: EventResource;
 }
@@ -45,7 +47,7 @@ function EventCard(props: EventCardProps): JSX.Element {
           <Image
             h={150}
             w="$full"
-            source={{ uri: event.image_url }}
+            source={event.image_url ? { uri: event.image_url } : defaultImage}
             alt={event.hero_caption ?? event.title}
           />
         </Box>

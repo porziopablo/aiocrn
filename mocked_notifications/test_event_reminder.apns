@@ -1,0 +1,23 @@
+{
+    "Simulator Target Bundle": "aiocrn",
+    "aps": {
+        "alert": {
+            "title": "Art Institute of Chicago",
+            "body": "Event today!: Artist Talk with John Doe at 2:00pm"
+			"data": {
+                "eventId": "1234",
+                "eventTitle": "Artist Talk with John Doe",
+                "startDate": "2024-01-01T14:00:00.000Z",
+                "id": "e343aBd848",
+                "type": "EventDayReminder",
+                "createdAt": "2024-01-01T09:00:00.000Z",
+			}
+        }
+    },
+    "body": {
+        "type": "IOS_PUSH",
+        "example": {
+          "exampleField": "text"
+        }
+    }
+}

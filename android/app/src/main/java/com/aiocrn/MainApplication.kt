@@ -12,6 +12,9 @@ import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
 
+import com.wix.reactnativenotifications.RNNotificationsPackage;
+
+
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
