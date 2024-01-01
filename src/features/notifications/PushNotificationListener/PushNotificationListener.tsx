@@ -47,7 +47,6 @@ function PushNotificationListener(): JSX.Element {
    * `getInitialNotification()` should be called on mount.
    */
   async function handleInitialNotificationAndroid(): Promise<void> {
-    console.log('handleInitialNotificationAndroid', Platform.OS);
     if (Platform.OS !== 'android') return;
 
     try {
