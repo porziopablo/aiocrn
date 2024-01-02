@@ -13,7 +13,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // slices
-import { apiSlice } from '../repositories';
+import { apiSlice, apiErrorLogger } from '../repositories';
 import favoritesSlice from './favorites';
 
 const persistConfig = {
@@ -35,7 +35,9 @@ export const store = configureStore({
         // https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(apiSlice.middleware),
+    })
+      .concat(apiSlice.middleware)
+      .concat(apiErrorLogger),
 });
 
 export const persistor = persistStore(store);
