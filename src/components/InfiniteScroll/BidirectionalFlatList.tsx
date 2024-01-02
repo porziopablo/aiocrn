@@ -14,8 +14,8 @@ import get from 'lodash/get';
 
 const DEFAULT_PADDING = 25;
 const SCROLL_THROTTLE = 0;
-const DEFAULT_BOTTOM_THRESHOLD = 200;
-const DEFAULT_TOP_THRESHOLD = 400;
+const DEFAULT_BOTTOM_THRESHOLD = 2000;
+const DEFAULT_TOP_THRESHOLD = 4000;
 const PADDING_HEIGHT_REDUCER = 3;
 
 export interface BidirectionalFlatListProps<T> {

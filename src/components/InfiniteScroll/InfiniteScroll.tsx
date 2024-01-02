@@ -11,7 +11,7 @@ import Spinner from '../Spinner/Spinner';
 import { type BaseArticParams } from '../../types/requests/common.requests';
 import { type ArticPageResponse } from '../../types/responses/common.responses';
 
-const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_PAGE_SIZE = 36;
 
 export interface InfiniteScrollItemOpts {
   isFetching?: boolean;
@@ -26,6 +26,7 @@ export interface InfiniteScrollProps<T> {
   renderEmpty?: () => React.ReactElement;
   pageSize?: number;
   bottomThreshold?: number;
+  topThreshold?: number;
   additionalQueryParams?: Record<string, any>;
   itemStyle?: BidirectionalFlatListProps<T>['itemStyle'];
 }
@@ -38,6 +39,7 @@ function InfiniteScroll<T>(props: InfiniteScrollProps<T>): JSX.Element {
     pageSize = DEFAULT_PAGE_SIZE,
     bottomThreshold,
     additionalQueryParams,
+    topThreshold,
   } = props;
 
   const [page, setPage] = useState(1);
@@ -51,14 +53,17 @@ function InfiniteScroll<T>(props: InfiniteScrollProps<T>): JSX.Element {
 
   const previousResult = useQuery(
     { ...(additionalQueryParams ?? {}), page: page - 1, limit: pageSize },
-    { skip: page === 0 },
+    { skip: page === 1 },
   );
   const currentResult = useQuery({ ...(additionalQueryParams ?? {}), page, limit: pageSize });
-  const nextResult = useQuery({
-    ...(additionalQueryParams ?? {}),
-    page: page + 1,
-    limit: pageSize,
-  });
+  const nextResult = useQuery(
+    {
+      ...(additionalQueryParams ?? {}),
+      page: page + 1,
+      limit: pageSize,
+    },
+    { skip: page === currentResult?.data?.pagination?.total_pages },
+  );
 
   const isFetching = currentResult.isFetching || nextResult.isFetching || previousResult.isFetching;
   const firstLoad = currentResult.isLoading || nextResult.isLoading || previousResult.isLoading;
@@ -69,7 +74,8 @@ function InfiniteScroll<T>(props: InfiniteScrollProps<T>): JSX.Element {
     if (previousResult?.data?.data && page !== 1) array.push(...previousResult.data.data);
     if (currentResult?.data?.data) array.push(...currentResult.data.data);
     // the next data may exist in the cache, even if the current page is the last one
-    if (nextResult?.data?.data) array.push(...nextResult.data.data);
+    if (nextResult?.data?.data && nextResult?.data?.pagination?.current_page !== page)
+      array.push(...nextResult.data.data);
     return array;
   }, [previousResult?.data?.data, currentResult?.data?.data, nextResult?.data?.data, page]);
 
@@ -127,6 +133,7 @@ function InfiniteScroll<T>(props: InfiniteScrollProps<T>): JSX.Element {
       totalPages={totalPages}
       pageSize={pageSize}
       bottomThreshold={bottomThreshold}
+      topThreshold={topThreshold}
     />
   );
 }

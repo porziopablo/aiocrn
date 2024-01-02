@@ -1,6 +1,9 @@
 // store
 import { apiSlice } from './index';
 
+// helpers
+import { transformArrayResponseIntoPage } from '../helpers/repositories.helpers';
+
 // types
 import { ArticPaths } from '../types/enums/endpoints.enums';
 import { type ArticPageResponse } from '../types/responses/common.responses';
@@ -11,6 +14,7 @@ export const eventsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getEvents: builder.query<ArticPageResponse<EventResource>, GetEventsParams>({
       query: (params) => ({ url: ArticPaths.Events, method: 'GET', params }),
+      transformResponse: transformArrayResponseIntoPage,
     }),
     getEvent: builder.query<EventResource, string>({
       query: (id) => ({ url: `${ArticPaths.Events}/${id}`, method: 'GET' }),
