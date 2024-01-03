@@ -4,6 +4,7 @@ import { Box, VStack, Heading, Text } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { DateTime } from 'luxon';
 import { TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 // types
 import { type EventResource } from '../../../types/responses/event.responses';
@@ -21,6 +22,7 @@ interface EventCardProps {
 function EventCard(props: EventCardProps): JSX.Element {
   const { event } = props;
   const { navigate } = useNavigation();
+  const { i18n } = useTranslation();
 
   function onPress(): void {
     navigate(TabNavigation.Events, {
@@ -55,6 +57,7 @@ function EventCard(props: EventCardProps): JSX.Element {
             <Text $dark-color="$textLight200" fontSize="$sm">
               {DateTime.fromISO(event.start_date).toLocaleString(
                 DateTime.DATETIME_MED_WITH_WEEKDAY,
+                { locale: i18n.language },
               )}
             </Text>
             <FavoriteEventButton eventId={event.id.toString()} />
@@ -62,7 +65,9 @@ function EventCard(props: EventCardProps): JSX.Element {
           <Heading $dark-color="$textLight200" size="sm">
             {event.title}
           </Heading>
-          <Html html={event.list_description} />
+          <Box maxHeight="50%" overflow="scroll">
+            <Html html={event.list_description || event.short_description} />
+          </Box>
         </VStack>
       </Box>
     </TouchableOpacity>
