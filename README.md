@@ -31,11 +31,17 @@ The environment that was used during development consisted of:
 
 ## Screenshots
 
+### Event list with infinite scrolling
 <img src="https://github.com/porziopablo/aiocrn/assets/54630895/0deeb520-b796-480b-8472-ce15a1550956" width="192">
+
+### Event detail
 <img src="https://github.com/porziopablo/aiocrn/assets/54630895/e03a1265-8368-4583-92f7-36104874c3b6" width="192">
 
-https://github.com/porziopablo/aiocrn/assets/54630895/4589a7ba-cb15-487f-bd0a-c542abde3c91
-https://github.com/porziopablo/aiocrn/assets/54630895/c96cdeb6-0014-4c02-82a9-3250e799649a
+### Save event to iOS calendar
+https://github.com/porziopablo/aiocrn/assets/54630895/6150379c-78ff-457c-b26f-09489a22b512
+
+### Save event in favorites
+https://github.com/porziopablo/aiocrn/assets/54630895/2f70e647-37eb-4aeb-924d-d852b5f8b9bf
 
 ## Run the challenge
 
