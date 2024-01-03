@@ -43,6 +43,11 @@ https://github.com/porziopablo/aiocrn/assets/54630895/6150379c-78ff-457c-b26f-09
 ### Save event in favorites
 https://github.com/porziopablo/aiocrn/assets/54630895/2f70e647-37eb-4aeb-924d-d852b5f8b9bf
 
+## Notes
+Since this was challenge and not a real app, some things should be considered:
+- The app connects to a real API only to get events, but there is no back-end where users can authenticate and have their data stored. The selected app language and the events marked as favorites are persisted thanks to redux-persist, just to show how it would work. The main difference would be that instead of persisting a Redux slice in the device's storage, there would be one or more repositories made with RTK Query that would communicate with that API.
+- The project includes the logic to request user's permissions to receive push notifications, get the device's token that would be sent to the back-end in order to start receiving them and to set listeners for both foreground and background notifications. However, the project does not include the config files related to APN or FCM that would actually let the app receive real notifications.
+
 ## Run the challenge
 
 ### Step 1: Clone the repo
