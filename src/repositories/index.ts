@@ -6,6 +6,9 @@ import { ARTIC_API } from '@env';
 // components
 import { showToast } from '../components/Toast/Toast';
 
+// helpers
+import { redirectToNotFound } from '../helpers/navigation.helpers';
+
 export const apiSlice = createApi({
   reducerPath: 'apiSlice',
   baseQuery: fetchBaseQuery({ baseUrl: ARTIC_API }),
@@ -18,6 +21,8 @@ export const apiErrorLogger: Middleware = () => (next) => (action) => {
     const payload = action?.payload as any;
     const description = payload?.data?.detail || action?.error?.message;
     showToast({ type: 'error', description });
+
+    if (payload?.status === 404) redirectToNotFound();
   }
 
   return next(action);

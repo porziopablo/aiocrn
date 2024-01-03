@@ -1,9 +1,11 @@
 {
   "allEvents": {
-    "heading": "Todos los Eventos"
+    "heading": "Todos los Eventos",
+    "empty": "No hay eventos disponibles en este momento."
   },
   "allFavoriteEvents": {
-    "heading": "Todos los Eventos Favoritos"
+    "heading": "Todos los Eventos Favoritos",
+    "empty": "No tienes eventos favoritos."
   },
   "more": {
     "heading": "Más"
@@ -29,5 +31,9 @@
   "languages": {
     "en": "Inglés",
     "es": "Español"
+  },
+  "notFound": {
+    "heading": "Página no encontrada",
+    "info": "Lo sentimos, la página que estás buscando no existe."
   }
 }

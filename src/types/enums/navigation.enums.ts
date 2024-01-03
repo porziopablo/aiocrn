@@ -10,6 +10,7 @@ export enum TabNavigation {
 export enum EventsNavigation {
   All = 'AllEvents',
   Detail = 'EventDetail',
+  NotFound = 'NotFound',
 }
 
 export enum FavoritesNavigation {
@@ -23,6 +24,7 @@ export enum MoreNavigation {
 export interface EventsStackParamList {
   [EventsNavigation.All]: undefined;
   [EventsNavigation.Detail]: { eventId: string };
+  [EventsNavigation.NotFound]: undefined;
 }
 
 export interface FavoriteEventsStackParamList {

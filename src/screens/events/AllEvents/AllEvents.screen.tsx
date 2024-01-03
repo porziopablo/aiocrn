@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import Screen from '../../../components/Screen/Screen';
 import InfiniteScroll from '../../../components/InfiniteScroll/InfiniteScroll';
 import EventCard from '../../../features/events/EventCard/EventCard';
+import EmptyList from '../../../components/EmptyList/EmptyList';
 
 // repositories
 import { useGetEventsQuery } from '../../../repositories/events.repository';
@@ -20,9 +21,17 @@ function AllEventsScreen(): JSX.Element {
     return <EventCard event={item} />;
   }
 
+  function renderEmptyList(): JSX.Element {
+    return <EmptyList title={t('allFavoriteEvents.empty')} />;
+  }
+
   return (
     <Screen hideBackButton title={t('allEvents.heading')}>
-      <InfiniteScroll<EventResource> useQuery={useGetEventsQuery} renderItem={renderItem} />
+      <InfiniteScroll<EventResource>
+        useQuery={useGetEventsQuery}
+        renderItem={renderItem}
+        renderEmpty={renderEmptyList}
+      />
     </Screen>
   );
 }

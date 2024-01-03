@@ -12,12 +12,15 @@ import PushNotificationListener from './src/features/notifications/PushNotificat
 import ToastInstance from './src/components/Toast/Toast';
 import AppStartUp from './src/features/AppStartUp/AppStartUp';
 
+// helpers
+import { navigationRef } from './src/helpers/navigation.helpers';
+
 function App(): JSX.Element {
   return (
     <PersistGate loading={null} persistor={persistor}>
       <Provider store={store}>
         <ThemeContext>
-          <NavigationContainer>
+          <NavigationContainer ref={navigationRef}>
             <AppStartUp>
               <PushNotificationListener />
               <TabNavigator />

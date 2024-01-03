@@ -1,9 +1,11 @@
 {
   "allEvents": {
-    "heading": "All Events"
+    "heading": "All Events",
+    "empty": "There are no events at this time."
   },
   "allFavoriteEvents": {
-    "heading": "All Favorite Events"
+    "heading": "All Favorite Events",
+    "empty": "You have no favorite events."
   },
   "more": {
     "heading": "More"
@@ -29,5 +31,9 @@
   "languages": {
     "en": "English",
     "es": "Spanish"
+  },
+  "notFound": {
+    "heading": "Page not found",
+    "info": "We're sorry, the page you are looking for does not exist."
   }
 }

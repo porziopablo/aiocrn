@@ -11,10 +11,11 @@ interface ScreenProps {
   children?: React.ReactNode;
   title?: string;
   hideBackButton?: boolean;
+  onPressBackButton?: () => void;
 }
 
 function Screen(props: ScreenProps): JSX.Element {
-  const { children, title, hideBackButton } = props;
+  const { children, title, hideBackButton, onPressBackButton } = props;
   const insets = useSafeAreaInsets();
 
   return (
@@ -28,7 +29,7 @@ function Screen(props: ScreenProps): JSX.Element {
       ]}
     >
       <View style={styles.headerRow}>
-        {!hideBackButton && <BackButton />}
+        {!hideBackButton && <BackButton onPress={onPressBackButton} />}
         {!!title && <Heading fontSize="$2xl">{title}</Heading>}
       </View>
       {children}

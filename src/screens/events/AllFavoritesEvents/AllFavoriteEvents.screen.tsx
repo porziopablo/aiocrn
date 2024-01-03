@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import Screen from '../../../components/Screen/Screen';
 import EventCard from '../../../features/events/EventCard/EventCard';
 import InfiniteScroll from '../../../components/InfiniteScroll/InfiniteScroll';
+import EmptyList from '../../../components/EmptyList/EmptyList';
 
 // store & repositories
 import { useAppSelector } from '../../../hooks/store.hooks';
@@ -26,15 +27,24 @@ function AllFavoriteEventsScreen(): JSX.Element {
     return { ids: favoriteEventsIds.join(',') };
   }
 
+  function renderEmptyList(): JSX.Element {
+    return <EmptyList title={t('allFavoriteEvents.empty')} />;
+  }
+
   const additionalQueryParams = useMemo(getAdditionalQueryParams, [favoriteEventsIds]);
 
   return (
     <Screen hideBackButton title={t('allFavoriteEvents.heading')}>
-      <InfiniteScroll<EventResource>
-        additionalQueryParams={additionalQueryParams}
-        useQuery={useGetEventsQuery}
-        renderItem={renderItem}
-      />
+      {!favoriteEventsIds.length ? (
+        renderEmptyList()
+      ) : (
+        <InfiniteScroll<EventResource>
+          additionalQueryParams={additionalQueryParams}
+          useQuery={useGetEventsQuery}
+          renderItem={renderItem}
+          renderEmpty={renderEmptyList}
+        />
+      )}
     </Screen>
   );
 }
