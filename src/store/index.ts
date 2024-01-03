@@ -15,19 +15,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // slices
 import { apiSlice, apiErrorLogger } from '../repositories';
 import favoritesSlice from './favorites';
+import userSettingsSlice from './userSettings';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
 };
 
-// check notes in src/store/favorites.ts
+// check notes in src/store/favorites.ts & src/store/userSettings.ts
 const persistedFavoritesReducer = persistReducer(persistConfig, favoritesSlice.reducer);
+const persistedUserSettingsReducer = persistReducer(persistConfig, userSettingsSlice.reducer);
 
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     favorites: persistedFavoritesReducer,
+    userSettings: persistedUserSettingsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

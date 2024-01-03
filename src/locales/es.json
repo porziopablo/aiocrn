@@ -13,13 +13,21 @@
     "Favorites": "Favoritos",
     "More": "Más"
   },
+  "commons": {
+    "back": "Volver",
+    "language": "Lenguaje"
+  },
   "events": {
-    "addToCalendar": "Save to my calendar"
+    "addToCalendar": "Guardar en mi calendario"
   },
   "calendar": {
     "saveEvent": {
       "success": "Evento guardado en el calendario",
       "error": "Error al guardar el evento en el calendario. Por favor, inténtelo de nuevo más tarde."
     }
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español"
   }
 }

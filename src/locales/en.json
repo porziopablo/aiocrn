@@ -14,7 +14,8 @@
     "More": "More"
   },
   "commons": {
-    "back": "Back"
+    "back": "Back",
+    "language": "Language"
   },
   "events": {
     "addToCalendar": "Save to my calendar"
@@ -24,5 +25,9 @@
       "success": "Event saved to calendar",
       "error": "Error saving event to calendar. Please try again."
     }
+  },
+  "languages": {
+    "en": "English",
+    "es": "Spanish"
   }
 }
